@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#548add">
+  <title>Bot-Friend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="./ChiKareGo2.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="wallpaper" aria-hidden="true"></div>
+  <main id="app-window" class="app-window" aria-label="Bot-Friend">
+    <header class="title-bar">
+      <span id="window-title"></span>
+      <nav id="archive-trail" aria-label="Archive trail" hidden></nav>
+      <button id="exit-archive" hidden>EXIT ARCHIVE <span aria-hidden="true">×</span></button>
+    </header>
+    <div class="window-body">
+      <section id="landing-screen" class="screen landing-screen" aria-labelledby="welcome-title">
+        <div class="welcome-copy">
+          <h1 id="welcome-title" class="decorative-title">SAY HI TO YOUR NEW<br>FRIENDLY CHATBOT</h1>
+          <p>A CHATBOT COMPRISED<br>OF ITS USERS</p>
+        </div>
+        <button id="begin-btn" class="begin-btn">⟦ BEGIN SESSION ⟧</button>
+      </section>
+      <section id="profile-screen" class="screen profile-screen" aria-labelledby="profile-heading" hidden>
+        <h2 id="profile-heading">TO BEGIN CHATTING,<br>MAKE YOUR PROFILE</h2>
+        <div class="camera-area">
+          <video id="camera-video" autoplay playsinline muted hidden></video>
+          <canvas id="camera-preview" width="768" height="768" aria-label="Black and white dotted camera preview"></canvas>
+          <button id="capture-btn">CAPTURE</button>
+          <button id="retake-btn" class="small-link" hidden>RETAKE</button>
+          <p id="camera-status" class="camera-status" role="status"></p>
+        </div>
+        <form id="profile-form">
+          <label class="name-field" for="name-input">NAME: <input id="name-input" placeholder="ENTER" maxlength="50" autocomplete="given-name" required></label>
+          <p class="photo-consent">Your original photo and conversation will be public. Photos are displayed with a dot filter.</p>
+          <button id="create-profile-btn" class="continue-btn" type="submit">CONTINUE &gt;&gt;</button>
+        </form>
+      </section>
+      <section id="created-screen" class="screen created-screen" aria-labelledby="created-heading" hidden>
+        <h2 id="created-heading">PROFILE CREATED</h2>
+        <div id="created-card" class="profile-card created-card"></div>
+        <button id="continue-btn" class="continue-btn">CONTINUE &gt;&gt;</button>
+      </section>
+      <section id="chat-screen" class="screen chat-screen" hidden>
+        <aside id="participant-sidebar" class="participant-sidebar" aria-label="Contributors" hidden>
+          <div id="selected-profile" class="profile-card"></div>
+          <div id="participant-grid" class="participant-grid" aria-label="Select a contributor"></div>
+        </aside>
+        <div class="chat-main">
+          <div id="conversation-intro" class="conversation-intro">
+            <h1 class="decorative-title">WHAT<span class="title-apostrophe">’</span>S ON<br>YOUR MIND?</h1>
+            <p>BEGIN THE CONVERSATION</p>
+          </div>
+          <div id="chat-overview" class="chat-overview" hidden>
+            <div id="bot-placeholder" class="bot-placeholder" aria-label="Bot placeholder"></div>
+            <div id="conversation-stats" class="conversation-stats" hidden></div>
+            <div id="owner-photo" class="owner-photo"></div>
+          </div>
+          <div id="messages" class="messages" aria-label="Conversation" aria-live="polite" aria-relevant="additions" hidden>
+            <div class="message-track"><div id="message-content" class="message-content"></div></div>
+          </div>
+          <form id="message-form" class="composer">
+            <label class="sr-only" for="message-input">Your message</label>
+            <input id="message-input" placeholder="⟦ ENTER TEXT ⟧" maxlength="500" autocomplete="off" required>
+          </form>
+        </div>
+        <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Show contributors" aria-pressed="false" hidden></button>
+      </section>
+      <p id="notice" class="notice" role="status" hidden></p>
+    </div>
+  </main>
+</body>
+</html>
